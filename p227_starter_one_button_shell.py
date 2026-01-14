@@ -4,19 +4,35 @@ import tkinter.scrolledtext as tksc
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 
-def do_command():
+'''def do_command():
     command = ["ping", "localhost"]
     # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
     # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
     
-    subprocess.run(command)
+    subprocess.run(command)'''
+
+# Modify the do_command function:
+# to use the new button as needed
+def do_command(command):
+    global command_textbox
+    
+    command_textbox.delete(1.0, tk.END)
+    command_textbox.insert(tk.END, command + " working....\n")
+    command_textbox.update()
+
+    with subprocess.Popen(command + ' ' + url_val, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
+        for line in p.stdout:
+            command_textbox.insert(tk.END,line)
+            command_textbox.update()
+
     
 root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
 
 # set up button to run the do_command function
-ping_btn = tk.Button(frame, text="ping", command=do_command)
+# Makes the command button pass it's name to a function using lambda
+ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
 ping_btn.pack()
 
 # creates the frame with label for the input text box
@@ -43,9 +59,5 @@ frame.pack()
 command_textbox = tksc.ScrolledText(frame, height=10, width=100)
 command_textbox.pack()
 
- #CODE TO ADD
-# Makes the command button pass it's name to a function using lambda
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
-ping_btn.pack()
 
 root.mainloop()
