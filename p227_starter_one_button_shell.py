@@ -116,5 +116,15 @@ nmap_btn.pack()
 command_textbox = tksc.ScrolledText(frame, height=10, width=100)
 command_textbox.pack()
 
+# save button
+save_btn = tk.Button(frame, text="Save", 
+    command=lambda:mSave(),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    bg="thistle2", activebackground="thistle4")
+save_btn.pack() 
+
 
 root.mainloop()
