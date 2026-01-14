@@ -48,8 +48,36 @@ frame.pack()
 
 # set up button to run the do_command function
 # Makes the command button pass it's name to a function using lambda
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
-ping_btn.pack()
+
+# ping button
+ping_btn = tk.Button(frame, text="Check if a URL is up and active", 
+    command=lambda:do_command("ping"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    bg="thistle2", activebackground="thistle4")
+ping_btn.pack() 
+
+# tracert button
+tracert_btn = tk.Button(frame, text="Map how data packets travel", 
+    command=lambda:do_command("tracert"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    bg="thistle2", activebackground="thistle4")
+tracert_btn.pack() 
+
+# nslookup button
+nslookup_btn = tk.Button(frame, text="Retrieve DNS data", 
+    command=lambda:do_command("nslookup"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    bg="thistle2", activebackground="thistle4")
+nslookup_btn.pack() 
 
 # creates the frame with label for the input text box
 frame_URL = tk.Frame(root, pady=10,  bg="black") # change frame color
