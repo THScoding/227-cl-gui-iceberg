@@ -3,13 +3,9 @@ import tkinter as tk
 import tkinter.scrolledtext as tksc
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
-
-'''def do_command():
-    command = ["ping", "localhost"]
-    # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
-    # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
-    
-    subprocess.run(command)'''
+from tkinter import ttk
+import time
+import threading
 
 # Modify the do_command function:
 # to use the new button as needed
@@ -32,12 +28,15 @@ def do_command(command):
             command_textbox.update()
 
 # Save function.
-def mSave():
+def mSave(progressbar, start_button):
   filename = asksaveasfilename(defaultextension='.txt',filetypes = (('Text files', '*.txt'),('Python files', '*.py *.pyw'),('All files', '*.*')))
   if filename is None:
     return
   file = open (filename, mode = 'w')
   text_to_save = command_textbox.get("1.0", tk.END)
+  
+  thread = threading.Thread(target=start_task, args=(progressbar, start_button))
+  thread.start()
   
   file.write(text_to_save)
   file.close()
@@ -116,15 +115,32 @@ nmap_btn.pack()
 command_textbox = tksc.ScrolledText(frame, height=10, width=100)
 command_textbox.pack()
 
-# save button
-save_btn = tk.Button(frame, text="Save", 
-    command=lambda:mSave(),
-    compound="center",
-    font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
-    bg="thistle2", activebackground="thistle4")
-save_btn.pack() 
+# ----- Progress Bar ----
 
+def start_task(progressbar, start_button):
+    """Simulates a task and updates the progress bar."""
+    start_button['state'] = 'disabled' # Disable button during task
+    progressbar['value'] = 0
+    max_value = 100
+    progressbar['maximum'] = max_value
+
+
+    for i in range(max_value + 1):
+        time.sleep(0.03) # Simulate work
+        progressbar['value'] = i
+        # Update the GUI to show the current progress
+        progressbar.update_idletasks()
+
+    start_button['state'] = 'normal' # Re-enable button after task
+    print("Task Complete!")
+
+# Progress bar widget
+progress_bar = ttk.Progressbar(root, orient='horizontal', length=300, mode='determinate')
+progress_bar.pack(pady=20)
+
+# Save button
+# The command calls on_start_button_click and passes the progress bar and button as arguments
+save_button = tk.Button(root, text="Start Download", command=lambda: mSave(progress_bar, save_button))
+save_button.pack(pady=10)
 
 root.mainloop()
