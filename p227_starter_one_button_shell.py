@@ -101,15 +101,15 @@ nslookup_btn = tk.Button(frame, text="Retrieve DNS data",
     bg="thistle2", activebackground="thistle4")
 nslookup_btn.pack() 
 
-# nmap button
-nmap_btn = tk.Button(frame, text="Find live hosts, devices, and connections", 
-    command=lambda:do_command("nmap"),
+# ipconfig button
+ipconfig_btn = tk.Button(frame, text="Display IP network configuration", 
+    command=lambda:do_command("ipconfig"),
     compound="center",
     font=("comic sans", 12),
     bd=0, 
     relief="flat",
     bg="thistle2", activebackground="thistle4")
-nmap_btn.pack() 
+ipconfig_btn.pack() 
 
 # Adds an output box to GUI.
 command_textbox = tksc.ScrolledText(frame, height=10, width=100)
