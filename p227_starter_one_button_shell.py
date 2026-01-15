@@ -7,8 +7,7 @@ from tkinter import ttk
 import time
 import threading
 
-# Modify the do_command function:
-# to use the new button as needed
+# do_command function for all buttons
 def do_command(command):
     global command_textbox, url_entry
 
@@ -61,10 +60,11 @@ url_label = tk.Label(frame_URL, text="Enter a URL of interest: ",
     relief=tk.FLAT, 
     fg="black",
     bg="LightCyan2")
-url_label.pack(side=tk.LEFT)
+url_label.pack(side=tk.LEFT, pady = 20)
 url_entry= tk.Entry(frame_URL,  font=("comic sans", 14)) # change font
-url_entry.pack(side=tk.LEFT)
+url_entry.pack(side=tk.LEFT, pady = 20)
 
+# input frame
 frame = tk.Frame(root,  bg="LightCyan2") # change frame color
 frame.pack()
 
@@ -79,7 +79,7 @@ ping_btn = tk.Button(frame, text="Check if a URL is up and active",
     bd=0, 
     relief="flat",
     bg="thistle2", activebackground="thistle4")
-ping_btn.pack() 
+ping_btn.pack(side = tk.LEFT, padx = 20) 
 
 # tracert button
 tracert_btn = tk.Button(frame, text="Map how data packets travel", 
@@ -89,7 +89,7 @@ tracert_btn = tk.Button(frame, text="Map how data packets travel",
     bd=0, 
     relief="flat",
     bg="thistle2", activebackground="thistle4")
-tracert_btn.pack() 
+tracert_btn.pack(side = tk.LEFT, padx = 20) 
 
 # nslookup button
 nslookup_btn = tk.Button(frame, text="Retrieve DNS data", 
@@ -99,7 +99,7 @@ nslookup_btn = tk.Button(frame, text="Retrieve DNS data",
     bd=0, 
     relief="flat",
     bg="thistle2", activebackground="thistle4")
-nslookup_btn.pack() 
+nslookup_btn.pack(side = tk.LEFT, padx = 20) 
 
 # ipconfig button
 ipconfig_btn = tk.Button(frame, text="Display IP network configuration", 
@@ -109,11 +109,15 @@ ipconfig_btn = tk.Button(frame, text="Display IP network configuration",
     bd=0, 
     relief="flat",
     bg="thistle2", activebackground="thistle4")
-ipconfig_btn.pack() 
+ipconfig_btn.pack(side = tk.LEFT, padx = 20) 
+
+# output frame
+frame = tk.Frame(root,  bg="LightCyan2") # change frame color
+frame.pack()
 
 # Adds an output box to GUI.
 command_textbox = tksc.ScrolledText(frame, height=10, width=100)
-command_textbox.pack()
+command_textbox.pack(pady = 30)
 
 # ----- Progress Bar ----
 
