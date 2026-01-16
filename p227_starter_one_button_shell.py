@@ -61,13 +61,14 @@ def mSave(progressbar, start_button):
 # Main window
 
 root = tk.Tk()
-root.wm_geometry("1000x650")
+root.wm_geometry("1200x650")
 root.configure(bg = "LightCyan2")
+root.title("Command Line Tools")
 frame = tk.Frame(root)
 frame.pack()
 
 # creates the frame with label for the input text box
-frame_URL = tk.Frame(root, pady=10,  bg="LightCyan2") # change frame color
+frame_URL = tk.Frame(root, pady=20,  bg="LightCyan2") # change frame color
 frame_URL.pack()
 
 # decorative label
@@ -93,9 +94,10 @@ input_frame.pack()
 ping_btn = tk.Button(input_frame, text="Check if a URL is up and active", 
     command=lambda:do_command("ping"),
     compound="center",
+    width = 25,
     font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
+    bd=2, 
+    relief = tk.RAISED,
     bg="thistle2", activebackground="thistle4")
 ping_btn.pack(side = tk.LEFT, padx = 20) 
 
@@ -103,9 +105,10 @@ ping_btn.pack(side = tk.LEFT, padx = 20)
 tracert_btn = tk.Button(input_frame, text="Map how data packets travel", 
     command=lambda:do_command("tracert"),
     compound="center",
+    width = 25,
     font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
+    bd=2, 
+    relief = tk.RAISED,
     bg="thistle2", activebackground="thistle4")
 tracert_btn.pack(side = tk.LEFT, padx = 20) 
 
@@ -113,9 +116,10 @@ tracert_btn.pack(side = tk.LEFT, padx = 20)
 nslookup_btn = tk.Button(input_frame, text="Retrieve DNS data", 
     command=lambda:do_command("nslookup"),
     compound="center",
+    width = 25,
     font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
+    bd=2, 
+    relief = tk.RAISED,
     bg="thistle2", activebackground="thistle4")
 nslookup_btn.pack(side = tk.LEFT, padx = 20) 
 
@@ -123,9 +127,10 @@ nslookup_btn.pack(side = tk.LEFT, padx = 20)
 ipconfig_btn = tk.Button(input_frame, text="Display IP network configuration", 
     command=lambda:do_command("ipconfig"),
     compound="center",
+    width = 25,
     font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
+    bd=2, 
+    relief = tk.RAISED,
     bg="thistle2", activebackground="thistle4")
 ipconfig_btn.pack(side = tk.LEFT, padx = 20) 
 
@@ -143,13 +148,13 @@ command_textbox.pack(pady = 30)
 file_type_variable = tk.StringVar(value = ".txt")
 
 # Creates radiobuttons
-txt_button = tk.Radiobutton(output_frame, text = "Text (.txt)", variable = file_type_variable, value = ".txt")
+txt_button = tk.Radiobutton(output_frame, text = "Text (.txt)", width = 10, variable = file_type_variable, value = ".txt")
 txt_button.pack()
 
-py_button = tk.Radiobutton(output_frame, text = "Python (.py)", variable = file_type_variable, value = ".py")
+py_button = tk.Radiobutton(output_frame, text = "Python (.py)", width = 10, variable = file_type_variable, value = ".py")
 py_button.pack()
 
-all_button = tk.Radiobutton(output_frame, text = "All Files (*.*)", variable = file_type_variable, value = "*.*")
+all_button = tk.Radiobutton(output_frame, text = "All Files (*.*)", width = 10, variable = file_type_variable, value = "*.*")
 all_button.pack()
 
 # ----- Progress Bar -----
