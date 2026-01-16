@@ -16,6 +16,9 @@ def do_command(command):
     if (len(url_val) == 0):
         # url_val = "127.0.0.1"
         url_val = "::1"
+        
+    if command == "ipconfig":
+      url_val = " "
     
     command_textbox.delete(1.0, tk.END)
     command_textbox.insert(tk.END, command + " working....\n")
@@ -26,7 +29,7 @@ def do_command(command):
             command_textbox.insert(tk.END,line)
             command_textbox.update()
 
-# Save function.
+# Save function
 def mSave(progressbar, start_button):
   
   # get file type (checked by radiobuttons)
@@ -41,7 +44,8 @@ def mSave(progressbar, start_button):
   elif (selected_type == "*.*"):
     filetypes = [("All Files", "*.*")]
     defaultextension = "*.*"
-    
+  
+  # Saves file according to file type
   filename = asksaveasfilename(defaultextension = defaultextension, filetypes = filetypes)
   if filename is None:
     return
@@ -57,7 +61,7 @@ def mSave(progressbar, start_button):
 # Main window
 
 root = tk.Tk()
-root.wm_geometry("1000x600")
+root.wm_geometry("1000x650")
 root.configure(bg = "LightCyan2")
 frame = tk.Frame(root)
 frame.pack()
@@ -83,7 +87,7 @@ input_frame = tk.Frame(root,  bg="LightCyan2") # change frame color
 input_frame.pack()
 
 # set up button to run the do_command function
-# Makes the command button pass it's name to a function using lambda
+# Makes the command button pass its name to a function using lambda
 
 # ping button
 ping_btn = tk.Button(input_frame, text="Check if a URL is up and active", 
@@ -130,7 +134,7 @@ output_frame = tk.Frame(root,  bg="LightCyan2") # change frame color
 output_frame.pack()
 
 # Adds an output box to GUI.
-command_textbox = tksc.ScrolledText(output_frame, height=10, width=100)
+command_textbox = tksc.ScrolledText(output_frame, height=15, width=100)
 command_textbox.pack(pady = 30)
 
 # ----- Radiobuttons -----
